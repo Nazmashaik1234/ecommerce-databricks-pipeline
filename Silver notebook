@@ -1,0 +1,9 @@
+orders = spark.table("bronze_orders")
+customers = spark.table("bronze_customers")
+products = spark.table("bronze_products")
+
+df = orders.join(customers, "customer_id").join(products, "product_id")
+
+df.write.format("delta").mode("overwrite").saveAsTable("silver_ecommerce")
+
+print("Silver done")
