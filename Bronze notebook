@@ -1,0 +1,11 @@
+# Bronze Layer
+
+orders_df = spark.read.option("header", True).csv("/FileStore/tables/orders.csv")
+customers_df = spark.read.option("header", True).csv("/FileStore/tables/customers.csv")
+products_df = spark.read.option("header", True).csv("/FileStore/tables/products.csv")
+
+orders_df.write.format("delta").mode("overwrite").saveAsTable("bronze_orders")
+customers_df.write.format("delta").mode("overwrite").saveAsTable("bronze_customers")
+products_df.write.format("delta").mode("overwrite").saveAsTable("bronze_products")
+
+print("Bronze done")
