@@ -1,0 +1,5 @@
+dbutils.notebook.run("./bronze_notebook", 60)
+dbutils.notebook.run("./silver_notebook", 60)
+dbutils.notebook.run("./gold_notebook", 60)
+
+print("Pipeline done")
