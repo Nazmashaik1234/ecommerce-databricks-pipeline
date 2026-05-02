@@ -1,0 +1,8 @@
+from pyspark.sql.functions import sum
+
+df = spark.table("silver_ecommerce")
+
+df.groupBy("category").agg(sum("amount").alias("revenue")) \
+  .write.format("delta").mode("overwrite").saveAsTable("gold_sales")
+
+print("Gold done")
